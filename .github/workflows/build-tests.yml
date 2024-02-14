@@ -39,3 +39,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GTH_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    - name: Check Quality Gate Status
+      run: |
+        if [[ ${{ steps.sonarcloud.outputs.status }} == 'failed' ]]; then
+          echo "Quality Gate check failed!"
+          exit 1
+        else
+          echo "Quality Gate check passed!"
+        fi
