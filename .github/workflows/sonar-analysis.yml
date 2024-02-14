@@ -12,8 +12,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  sonar-analysis:
+  build-and-test:
     runs-on: ubuntu-latest
+
+    steps:
     - name: SonarCloud Scan
       id: sonarcloud
       uses: SonarSource/sonarcloud-github-action@master
