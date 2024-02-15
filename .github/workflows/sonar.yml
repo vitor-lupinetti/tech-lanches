@@ -55,5 +55,8 @@ jobs:
         run: | 
           ./.sonar/scanner/dotnet-sonarscanner begin /k:"vitor-lupinetti_tech-lanches" /o:"vitor-lupinetti" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build src/TechLanches/TechLanches.sln --configuration Release
-          dotnet test test/**/*.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+          dotnet test test/**/*.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover -l trx
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
+      - name: List coverage report directory
+        run: ls test/**/.
