@@ -16,7 +16,7 @@ namespace TechLanches.Domain.Aggregates
         public string Descricao { get; private set; }
         public decimal Preco { get; private set; }
         public CategoriaProduto Categoria { get; private set; }
-        public bool Deletado { get; private set; }
+        public bool Deletadoo { get; private set; }
         public IReadOnlyCollection<ItemPedido> ItensPedidos { get; private set; }
 
 
@@ -57,7 +57,7 @@ namespace TechLanches.Domain.Aggregates
 
         public void DeletarProduto()
         {
-            Deletado = true;
+            Deletadoo = true;
         }
     }
 }

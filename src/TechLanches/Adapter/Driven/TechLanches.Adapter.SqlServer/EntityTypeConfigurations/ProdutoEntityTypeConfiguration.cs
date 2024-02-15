@@ -41,7 +41,7 @@ namespace TechLanches.Adapter.SqlServer.EntityTypeConfigurations
 
             builder.Ignore(x => x.DomainEvents);
 
-            builder.HasQueryFilter(b => !b.Deletado);
+            builder.HasQueryFilter(b => !b.Deletadoo);
         }
     }
 }
