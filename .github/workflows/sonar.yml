@@ -62,7 +62,4 @@ jobs:
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
       - name: List coverage report directory
-        run: ls test/TechLanches.UnitTests/.
-
-      - name: Search coverage report directory
-        run: ls -R | grep "coverage.opencover.xml"
+        run: ls test/.
