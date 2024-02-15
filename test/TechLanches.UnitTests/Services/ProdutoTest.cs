@@ -132,7 +132,7 @@ namespace TechLanches.UnitTests.Services
             // Assert
             await unitOfWork.Received(1).CommitAsync();
             Assert.NotNull(produto);
-            Assert.True(produto.Deletado);
+            Assert.True(produto.Deletadoo);
         }
     }
 }
