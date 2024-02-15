@@ -56,10 +56,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: | 
-          ./.sonar/scanner/dotnet-sonarscanner begin /k:"vitor-lupinetti_tech-lanches" /o:"vitor-lupinetti" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          ./.sonar/scanner/dotnet-sonarscanner begin /k:"vitor-lupinetti_tech-lanches" /o:"vitor-lupinetti" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml
           dotnet build src/TechLanches/TechLanches.sln --configuration Release
-          dotnet test test/**/*.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+          coverlet ./TechLanches.UnitTests/bin/Debug/net6.0/TechLanches.UnitTests.dll
+          --target "dotnet" 
+          --targetargs "test/**/*.csproj --no-build"
+          -f=opencover 
+          -o="coverage.xml"
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
       - name: List coverage report directory
-        run: ls test/.
+        run: ls test/**/.
