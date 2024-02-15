@@ -56,6 +56,6 @@ jobs:
           dotnet tool update dotnet-reportgenerator-globaltool -g
           ./.sonar/scanner/dotnet-sonarscanner begin /k:"vitor-lupinetti_tech-lanches" /o:"vitor-lupinetti" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.coverageReportPaths=".\sonarqubecoverage\SonarQube.xml"
           dotnet build src/TechLanches/TechLanches.sln --configuration Release
-          dotnet test --no-build --collect:"XPlat Code Coverage"
+          dotnet test test/**/*.csproj --no-build --collect:"XPlat Code Coverage"
           reportgenerator "-reports:*\TestResults\*\coverage.cobertura.xml" "-targetdir:sonarqubecoverage" "-reporttypes:SonarQube"
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
