@@ -60,3 +60,6 @@ jobs:
 
       - name: List coverage report directory
         run: ls test/**/TestResults
+
+      - name: Search coverage report directory
+        run: ls -R | grep "coverage.opencover.xml"
