@@ -58,3 +58,6 @@ jobs:
           dotnet build src/TechLanches/TechLanches.sln --configuration Release
           dotnet-coverage collect 'dotnet test test/**/*.csproj' -f xml -o 'coverage.xml'
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          
+      - name: List coverage report files
+        run: ls -la D:\a\tech-lanches\tech-lanches\
